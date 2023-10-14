@@ -24,7 +24,7 @@ const userModel = new Schema(
             default: 'student'
         },
         mobileNumber: {
-            type: Number,
+            type: String,
             required: true,
         },
         className: {

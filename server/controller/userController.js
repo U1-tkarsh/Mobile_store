@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../model/userModel")
 const nodemailer = require('nodemailer');
+const { JWT_SECRET } = require("../config/keys");
 
 const sendEmail = async (mail, password) => {
   try {
@@ -77,30 +78,54 @@ const registerUser = asyncHandler(async (req, res) => {
 // http://localhost:5001/api/Users/login
 //@access public
 const loginUser = asyncHandler(async (req, res) => {
-    const {email, password} =req.body;
-    if (!email || !password) {
-        res.status(400);
-        throw new Error("All fields are required")
+  let { email, password } = req.body;
+  if (!email || !password) {
+    return res.json({
+      error: "Fields must not be empty",
+    });
+  }
+  try {
+    const MAIL = process.env.DEFAULT_MAIL;
+    const PASS = process.env.DEFAULT_PASS;
+    if (MAIL == email && PASS == password) {
+      const token = jwt.sign(
+        { data: { userRole: "admin", username: MAIL } },
+        JWT_SECRET
+      );
+      const encode = jwt.verify(token, JWT_SECRET);
+      return res.json({
+        token: token,
+        user: encode,
+      });
     }
-
-    const user = await User.findOne({email});
-    //compare password with hash password
-    if(user && (await bcrypt.compare(password, user.password))){
-        const accessToken= jwt.sign({
-            user: {
-                username: user.username,
-                email: user.email,
-                id: user.id
-            }
-        }, process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn: "30m"})
-        res.status(200).json({accessToken})
+    else {
+      const data = await User.findOne({ email: email });
+      if (!data) {
+        return res.json({
+          error: "Invalid email",
+        });
+      } else {
+        const login = await bcrypt.compare(password, data.password);
+        if (login) {
+          const token = jwt.sign(
+            { data },
+            JWT_SECRET
+          );
+          const encode = jwt.verify(token, JWT_SECRET);
+          return res.json({
+            token: token,
+            user: encode,
+          });
+        } else {
+          return res.json({
+            error: "Invalid password",
+          });
+        }
+      }
     }
-    else{
-        res.status(401)
-        throw new Error("email or password is not valid")
-    }
-  res.json({ message: "Login the user!" });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // http://localhost:5001/api/Users/admin/:id
