@@ -55,14 +55,14 @@ const Login = () => {
         // else if (user.userRole == "student"){ navigate("/");toast.success("Sign Up Successful !!");}
         else {
         navigate("/");
-        toast.success("Sign Up Successful !!");
+        toast.success("Sign In Successful !!");
         }
         console.log("Login successful");
-        toast.success("Sign Up Successful !!");
+        toast.success("Sign In Successful !!");
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Sign Up Failed !!");
+        toast.error("Sign In Failed !!");
       });
   };
 

@@ -27,7 +27,7 @@ const userModel = new Schema(
             type: String,
             required: true,
         },
-        className: {
+        address: {
             type: String,
             required: true
         }

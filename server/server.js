@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.json());
 app.use('/api/attendance', require('./routes/attendanceRoute'));
 app.use("/api/Users", require('./routes/userRoute'));
+app.use("/api/smartPhone", require('./routes/smartPhoneRoute'));
+app.use("/api/confirmed", require(`./routes/confirmedRoute`));
 app.use(errorHandler);
 
 app.listen(port, () => {

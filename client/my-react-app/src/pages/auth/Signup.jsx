@@ -13,7 +13,7 @@ const Signup = () => {
         email: '',
         password: '',
         mobileNumber: '',
-        className: '',
+        address: '',
     });
 
     const classOptions = [
@@ -132,35 +132,30 @@ const Signup = () => {
                     </label>
                   </div>
                   <div className="flex items-center justify-between mb-4">
-                    <button
+                    
+                    <label className="block mb-2 font-semibold">
+                      Address
+                      <span className="text-red-700 relative top-0 right-0">
+                        *
+                      </span>
+                      <input
+                        className="border rounded-sm px-3 py-2 mt-1 w-full text-black bg-gray-100 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        type="text"
+                        id="address"
+                        name="address"
+                        value={formData.address}
+                        placeholder="Enter Your Address"
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <button
                       className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-700"
                       type="submit"
                     >
                       Sign Up
                     </button>
-                    <label className="block mb-2 font-semibold">
-                      Select Class
-                      <span className="text-red-700 relative top-0 right-0">
-                        *
-                      </span>
-                      <select
-                        className="border rounded-sm px-3 py-2 mt-1 w-full text-black bg-gray-100 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none"
-                        name="className"
-                        value={formData.className}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="" disabled>
-                          Select a class
-                        </option>
-                        {classOptions.map((option) => (
-                          <option key={option.class} value={option.class}>
-                            {option.class}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
                 </form>
               </div>
             </div>
