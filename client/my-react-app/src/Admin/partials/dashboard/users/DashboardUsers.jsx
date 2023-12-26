@@ -6,7 +6,7 @@ import Header from "../../Header";
 //   } from "@fortawesome/free-solid-svg-icons";
 //   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-const BASE_URL = 'http://localhost:5001/api';
+import { BASE_URL } from "../../../../config";
 import axios from "axios";
 
 function DashboardUsers() {

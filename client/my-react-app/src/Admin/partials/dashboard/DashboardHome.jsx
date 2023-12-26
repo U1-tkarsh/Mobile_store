@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 //   } from "@fortawesome/free-solid-svg-icons";
 //   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-const BASE_URL = 'http://localhost:5001/api';
+import { BASE_URL } from "../../../config";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import Header from "../Header";

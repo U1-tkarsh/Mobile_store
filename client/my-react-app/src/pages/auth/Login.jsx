@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // const BASE_URL = import.meta.env.VITE_BASE_URL;
-const BASE_URL = "http://localhost:5001/api"; 
+import { BASE_URL } from "../../config";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -57,8 +57,6 @@ const Login = () => {
         navigate("/");
         toast.success("Sign In Successful !!");
         }
-        console.log("Login successful");
-        toast.success("Sign In Successful !!");
       })
       .catch((error) => {
         console.error(error);

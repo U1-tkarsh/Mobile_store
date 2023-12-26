@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+import { BASE_URL } from "../../config";
 
 const ForgotPassword = () => {
 

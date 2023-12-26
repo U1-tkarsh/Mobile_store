@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const BASE_URL = "http://localhost:5001/api"; 
+import { BASE_URL } from "../../config";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
@@ -40,7 +40,7 @@ const Signup = () => {
       
           console.log("Registration successful", response.data);
           toast.success("Sign Up Successful !!");
-          navigate("/");
+          navigate("/login");
         } catch (error) {
           console.error("Error registering", error);
           toast.error("Sign Up Failed !!");

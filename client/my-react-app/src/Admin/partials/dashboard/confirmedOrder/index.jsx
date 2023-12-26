@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const BASE_URL = "http://localhost:5001/api";
+import { BASE_URL } from "../../../../config";
 import axios from "axios";
 import Header from "../../Header";
 import Sidebar from "../../Sidebar";
